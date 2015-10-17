@@ -13,8 +13,7 @@ class NewVisitorTest(unittest.TestCase):
         self.browser.quit()
 
     def check_for_row_in_list_table(self, row_text):
-        table = self.browser.find_element_by_id(
-            'id_list_table')
+        table = self.browser.find_element_by_id('id_list_table')
         rows = table.find_elements_by_tag_name('tr')
         self.assertIn(row_text, [row.text for row in rows])
 
@@ -42,7 +41,6 @@ class NewVisitorTest(unittest.TestCase):
         # When she hits enter, the page updates, and now the page
         # lists her to-do item
         inputbox.send_keys(Keys.ENTER)
-
         self.check_for_row_in_list_table('1: Buy peacock feathers')
 
         # There is still a text box to enter another item
@@ -51,11 +49,10 @@ class NewVisitorTest(unittest.TestCase):
         inputbox.send_keys('Use peacock feather to make a fly')
         inputbox.send_keys(Keys.ENTER)
 
+        # The page updates again and shows both items
         self.check_for_row_in_list_table('1: Buy peacock feathers')
         self.check_for_row_in_list_table(
             '2: Use peacock feather to make a fly')
-
-        # The page updates again and shows both items
 
         # She wonders if the site will remember her list
         # She notices there is a unique URL - with some text explaining
